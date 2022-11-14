@@ -1,10 +1,12 @@
 from datetime import date
  
-def list_convert(file, dict_name):
+def list_convert(file):  #add back in dict_name as argument
     dict_name = {}
     for i in range(5,18):
         dict_name[f"w{i}"] = file[f"week{i}"].tolist()
     return dict_name
+
+
 
 def weekly_results(check, picks):
     week_wins = 0
@@ -13,6 +15,8 @@ def weekly_results(check, picks):
         if picks[i] in check:
             week_wins += 1
     return week_wins
+
+
 
 def win_count(week_winners, week_picks):
     num_wins = 0
@@ -29,9 +33,13 @@ def win_count(week_winners, week_picks):
     total_wins = total_wins + num_wins    
     return total_wins
 
+
+
 def weeklyWins (player, playerPicks, weekly_winners):  # update the range as weeks progress
     for i in range(5,weekNumber()):
         player.append( weekly_results(weekly_winners.get(f"w{i}"), playerPicks.get(f"w{i}")))
+
+
                  
 def print_function_weekly (players , playerWins):
 
@@ -44,12 +52,16 @@ def print_function_weekly (players , playerWins):
     
     print()
 
+
+
 def print_function_Total (players, playerWins):
     
     for i in range(len(players)):
         print(f"{players[i]} has {playerWins[i]} wins total")
         
     print()
+
+
 
 def weekNumber():
     date1 = date(2022, 10, 8)
@@ -59,9 +71,15 @@ def weekNumber():
     days = abs(date1 - date2).days
     
     return (days // 7) + weekOffset
-    
-    
- 
+
+
+
+def convert_lower(dictionary):
+     
+     for i in range(len(dictionary)):
+         for j in range(len(dictionary.get(f"w{i+5}"))):
+            dictionary.get(f"w{i+5}")[j] = dictionary.get(f"w{i+5}")[j].lower()
+            
     
 
 
